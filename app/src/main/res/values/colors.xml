@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="zfm_primary">#315BE8</color>
+    <color name="zfm_on_primary">#FFFFFF</color>
+    <color name="zfm_primary_container">#EDF1FF</color>
+    <color name="zfm_on_primary_container">#284CBF</color>
+    <color name="zfm_secondary">#697080</color>
+    <color name="zfm_background">#FFFFFF</color>
+    <color name="zfm_surface">#FFFFFF</color>
+    <color name="zfm_surface_variant">#F1F3F7</color>
+    <color name="zfm_on_surface">#24262B</color>
+    <color name="zfm_on_surface_variant">#6C7079</color>
+    <color name="zfm_outline">#CACED7</color>
+    <color name="zfm_outline_variant">#E8EAF0</color>
+    <color name="zfm_error">#D34747</color>
+    <color name="zfm_success">#238663</color>
+    <color name="zfm_success_container">#EAF6EF</color>
+    <color name="zfm_on_success_container">#238663</color>
+    <color name="zfm_warning">#A86D17</color>
+    <color name="zfm_terminal">#17191D</color>
+    <color name="zfm_terminal_text">#DDE3ED</color>
+    <color name="zfm_field">#F4F5F8</color>
+    <color name="zfm_muted">#9BA1AC</color>
+</resources>

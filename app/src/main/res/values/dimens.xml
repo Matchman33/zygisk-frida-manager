@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zfm_page_padding">20dp</dimen>
+    <dimen name="zfm_section_gap">24dp</dimen>
+    <dimen name="zfm_control_gap">12dp</dimen>
+    <dimen name="zfm_small_gap">8dp</dimen>
+    <dimen name="zfm_card_radius">8dp</dimen>
+    <dimen name="zfm_touch_target">48dp</dimen>
+    <dimen name="zfm_output_height">160dp</dimen>
+</resources>

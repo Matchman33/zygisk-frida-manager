@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="8dp" android:paddingTop="12dp" android:paddingBottom="12dp" android:background="?attr/selectableItemBackground" android:minHeight="84dp">
+    <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_code_24" android:contentDescription="@null" app:tint="@color/zfm_primary" />
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+        <TextView android:id="@+id/scriptTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="2" android:ellipsize="end" android:textAppearance="@style/TextAppearance.Zfm.Title" />
+        <TextView android:id="@+id/scriptSubtitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:maxLines="3" android:ellipsize="end" android:textAppearance="@style/TextAppearance.Zfm.Helper" />
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/scriptMore" style="@style/Widget.Zfm.IconButton" android:src="@drawable/ic_more_vert_24" android:contentDescription="@string/action_more" />
+</LinearLayout>

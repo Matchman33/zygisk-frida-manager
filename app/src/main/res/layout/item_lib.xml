@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:layout_marginBottom="8dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+        android:hint="@string/library_path">
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/libPath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textNoSuggestions|textMultiLine"
+        android:maxLines="3"
+        android:textSize="13sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/removeLib"
+        style="@style/Widget.Zfm.IconButton"
+        android:src="@drawable/ic_delete_24"
+        android:contentDescription="@string/remove_library" />
+
+</LinearLayout>

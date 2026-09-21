@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/zfm_primary</item>
+        <item name="colorOnPrimary">@color/zfm_on_primary</item>
+        <item name="colorPrimaryContainer">@color/zfm_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/zfm_on_primary_container</item>
+        <item name="colorSecondary">@color/zfm_secondary</item>
+        <item name="colorSecondaryContainer">@color/zfm_primary_container</item>
+        <item name="colorOnSecondaryContainer">@color/zfm_on_primary_container</item>
+        <item name="colorSurface">@color/zfm_surface</item>
+        <item name="colorSurfaceVariant">@color/zfm_surface_variant</item>
+        <item name="colorSurfaceContainer">@color/zfm_field</item>
+        <item name="colorSurfaceContainerHigh">@color/zfm_field</item>
+        <item name="colorOnSurface">@color/zfm_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/zfm_on_surface_variant</item>
+        <item name="colorOutline">@color/zfm_outline</item>
+        <item name="colorOutlineVariant">@color/zfm_outline_variant</item>
+        <item name="colorError">@color/zfm_error</item>
+        <item name="android:windowBackground">@color/zfm_background</item>
+        <item name="android:navigationBarColor">@color/zfm_surface</item>
+        <item name="android:statusBarColor">@color/zfm_surface</item>
+        <item name="android:fontFamily">@font/zfm_regular</item>
+        <item name="fontFamily">@font/zfm_regular</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textViewStyle">@style/Widget.Zfm.Text</item>
+        <item name="editTextStyle">@style/Widget.Zfm.EditText</item>
+        <item name="textInputStyle">@style/Widget.Zfm.TextInput</item>
+        <item name="materialButtonStyle">@style/Widget.Zfm.Button</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Zfm.Dialog</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.Zfm.Body</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.Zfm.Body</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.Zfm.Helper</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.Zfm.ToolbarTitle</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.Zfm.Title</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.Zfm.Title</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.Zfm.Button</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.Zfm.Helper</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.Zfm.Navigation</item>
+    </style>
+    <style name="Widget.Zfm.Text" parent="Widget.AppCompat.TextView">
+        <item name="android:textAppearance">@style/TextAppearance.Zfm.Body</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+    <style name="TextAppearance.Zfm.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/zfm_regular</item>
+        <item name="android:fontFamily">@font/zfm_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textColor">@color/zfm_on_surface</item>
+    </style>
+    <style name="TextAppearance.Zfm.Title" parent="TextAppearance.Zfm.Body">
+        <item name="fontFamily">@font/zfm_medium</item>
+        <item name="android:fontFamily">@font/zfm_medium</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="TextAppearance.Zfm.ToolbarTitle" parent="TextAppearance.Zfm.Title">
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="TextAppearance.Zfm.Section" parent="TextAppearance.Zfm.Title">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/zfm_on_surface_variant</item>
+    </style>
+    <style name="TextAppearance.Zfm.Helper" parent="TextAppearance.Zfm.Body">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/zfm_on_surface_variant</item>
+    </style>
+    <style name="TextAppearance.Zfm.Code" parent="TextAppearance.Zfm.Helper">
+        <item name="android:textSize">11sp</item>
+    </style>
+    <style name="TextAppearance.Zfm.Button" parent="TextAppearance.Zfm.Title">
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="TextAppearance.Zfm.Navigation" parent="TextAppearance.Zfm.Body">
+        <item name="android:textSize">11sp</item>
+    </style>
+    <style name="Widget.Zfm.EditText" parent="Widget.Material3.TextInputEditText.FilledBox">
+        <item name="android:textAppearance">@style/TextAppearance.Zfm.Body</item>
+        <item name="fontFamily">@font/zfm_regular</item>
+        <item name="android:fontFamily">@font/zfm_regular</item>
+        <item name="android:paddingTop">22dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:minHeight">54dp</item>
+    </style>
+    <style name="Widget.Zfm.TextInput" parent="Widget.Material3.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/zfm_field</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="boxStrokeColor">@color/zfm_primary</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+        <item name="hintTextAppearance">@style/TextAppearance.Zfm.Helper</item>
+        <item name="suffixTextAppearance">@style/TextAppearance.Zfm.Helper</item>
+    </style>
+    <style name="Widget.Zfm.Spinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingStart">6dp</item>
+        <item name="android:paddingEnd">6dp</item>
+        <item name="android:background">@drawable/bg_spinner</item>
+    </style>
+    <style name="Widget.Zfm.Button" parent="Widget.Material3.Button">
+        <item name="android:textAppearance">@style/TextAppearance.Zfm.Button</item>
+        <item name="fontFamily">@font/zfm_medium</item>
+        <item name="android:fontFamily">@font/zfm_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:insetTop">4dp</item>
+        <item name="android:insetBottom">4dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">true</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="iconSize">18dp</item>
+        <item name="iconPadding">8dp</item>
+    </style>
+    <style name="Widget.Zfm.Button.Tonal" parent="Widget.Zfm.Button">
+        <item name="backgroundTint">@color/zfm_field</item>
+        <item name="android:textColor">@color/button_text</item>
+        <item name="iconTint">@color/primary_tint</item>
+    </style>
+    <style name="Widget.Zfm.Button.Outlined" parent="Widget.Zfm.Button.Tonal">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="strokeColor">@color/zfm_outline_variant</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+    <style name="Widget.Zfm.Button.Text" parent="Widget.Zfm.Button.Tonal">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:textColor">@color/primary_tint</item>
+    </style>
+    <style name="Widget.Zfm.Segment" parent="Widget.Zfm.Button.Tonal">
+        <item name="backgroundTint">@color/segment_background</item>
+        <item name="android:textColor">@color/nav_tint</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="cornerRadius">6dp</item>
+    </style>
+    <style name="Widget.Zfm.IconButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:padding">14dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="tint">@color/zfm_on_surface_variant</item>
+    </style>
+    <style name="Widget.Zfm.Help" parent="Widget.Zfm.IconButton">
+        <item name="android:src">@drawable/ic_help_24</item>
+        <item name="android:contentDescription">@string/action_help</item>
+        <item name="tint">@color/zfm_muted</item>
+    </style>
+    <style name="Zfm.Section" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Zfm.Section</item>
+    </style>
+    <style name="Zfm.FieldLabel" parent="Zfm.Section">
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Zfm.Helper</item>
+    </style>
+    <style name="ThemeOverlay.Zfm.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="elevationOverlayEnabled">false</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.Zfm</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/Zfm.DialogTitle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.Zfm.Button.Text</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.Zfm.Button.Text</item>
+    </style>
+    <style name="MaterialAlertDialog.Zfm" parent="MaterialAlertDialog.Material3">
+        <item name="backgroundTint">@color/zfm_surface</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Zfm.Dialog</item>
+    </style>
+    <style name="ShapeAppearance.Zfm.Dialog" parent="ShapeAppearance.Material3.Corner.ExtraLarge">
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="Zfm.DialogTitle" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textAppearance">@style/TextAppearance.Zfm.Title</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/zfm_medium</item>
+    </style>
+</resources>

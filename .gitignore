@@ -1,0 +1,11 @@
+*.iml
+.idea/
+.DS_Store
+.gradle/
+local.properties
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+/selftest/out/
+/selftest/gen*/

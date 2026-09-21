@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/zfm_background" android:orientation="vertical">
+    <include layout="@layout/view_toolbar" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingTop="12dp">
+        <com.google.android.material.button.MaterialButton android:id="@+id/tagButton" style="@style/Widget.Zfm.Button.Tonal" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="10dp" android:text="@string/action_log" app:icon="@drawable/ic_expand_more_24" app:iconGravity="end" android:minHeight="48dp" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/startStopButton" android:layout_width="76dp" android:layout_height="wrap_content" android:text="@string/action_start" android:minHeight="48dp" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="8dp">
+        <TextView android:id="@+id/logStatus" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textAppearance="@style/TextAppearance.Zfm.Helper" android:accessibilityLiveRegion="polite" />
+        <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/clearButton" style="@style/Widget.Zfm.IconButton" android:src="@drawable/ic_delete_24" android:contentDescription="@string/action_clear" />
+        <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/copyButton" style="@style/Widget.Zfm.IconButton" android:src="@drawable/ic_copy_24" android:contentDescription="@string/action_copy" />
+    </LinearLayout>
+    <ScrollView android:id="@+id/logScroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:background="@color/zfm_terminal" android:fillViewport="true">
+        <TextView android:id="@+id/logText" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="20dp" android:textColor="@color/zfm_terminal_text" android:textIsSelectable="true" android:textSize="11sp" />
+    </ScrollView>
+    <include layout="@layout/view_bottom_navigation" />
+</LinearLayout>

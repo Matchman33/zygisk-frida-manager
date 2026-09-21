@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/zfm_background" android:orientation="vertical">
+    <include layout="@layout/view_toolbar" />
+    <ScrollView android:id="@+id/targetEditScroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+            <TextView style="@style/Zfm.Section" android:layout_marginTop="0dp" android:text="@string/section_target" />
+            <TextView style="@style/Zfm.FieldLabel" android:text="@string/target_process" />
+            <TextView android:id="@+id/appNameInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingTop="8dp" android:paddingBottom="8dp" android:textAppearance="@style/TextAppearance.Zfm.Body" android:textIsSelectable="true" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:id="@+id/appLabelText" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textAppearance="@style/TextAppearance.Zfm.Helper" />
+                <com.google.android.material.button.MaterialButton android:id="@+id/pickAppButton" style="@style/Widget.Zfm.Button.Text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/action_pick" />
+            </LinearLayout>
+            <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/enabledSwitch" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/cb_enabled" android:textAppearance="@style/TextAppearance.Zfm.Body" android:minHeight="52dp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="10dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/section_delay" android:textAppearance="@style/TextAppearance.Zfm.Section" />
+                <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/helpDelay" style="@style/Widget.Zfm.Help" />
+            </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/section_delay" app:suffixText="@string/hint_delay_seconds">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/delayInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number" android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.chip.ChipGroup android:id="@+id/delayPresets" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" app:chipSpacingHorizontal="6dp" app:chipSpacingVertical="0dp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="10dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/section_libs" android:textAppearance="@style/TextAppearance.Zfm.Section" />
+                <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/helpLibraries" style="@style/Widget.Zfm.Help" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/libContainer" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="4dp">
+                <com.google.android.material.button.MaterialButton android:id="@+id/addGadgetButton" style="@style/Widget.Zfm.Button.Outlined" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="6dp" android:text="@string/btn_add_gadget" android:textSize="13sp" />
+                <com.google.android.material.button.MaterialButton android:id="@+id/addGadget32Button" style="@style/Widget.Zfm.Button.Outlined" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="6dp" android:text="@string/btn_add_gadget32" android:textSize="13sp" />
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButton android:id="@+id/addLibButton" style="@style/Widget.Zfm.Button.Text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/btn_add_lib" app:icon="@drawable/ic_add_24" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="10dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/section_gadget" android:textAppearance="@style/TextAppearance.Zfm.Section" />
+                <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/helpGadget" style="@style/Widget.Zfm.Help" />
+            </LinearLayout>
+            <TextView android:id="@+id/gadgetSummary" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="@style/TextAppearance.Zfm.Helper" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/pushScriptButton" style="@style/Widget.Zfm.Button.Tonal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/select_script" app:icon="@drawable/ic_expand_more_24" app:iconGravity="end" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/editGadgetButton" style="@style/Widget.Zfm.Button.Outlined" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/script_settings" app:icon="@drawable/ic_code_24" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="10dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/section_child" android:textAppearance="@style/TextAppearance.Zfm.Section" />
+                <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/helpChildren" style="@style/Widget.Zfm.Help" />
+            </LinearLayout>
+            <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/childGatingSwitch" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/cb_child_enabled" android:textAppearance="@style/TextAppearance.Zfm.Body" android:minHeight="52dp" />
+            <LinearLayout android:id="@+id/childFields" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                <Spinner android:id="@+id/childModeSpinner" style="@style/Widget.Zfm.Spinner" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                <LinearLayout android:id="@+id/childLibContainer" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="vertical" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="4dp">
+                    <com.google.android.material.button.MaterialButton android:id="@+id/addChildLibButton" style="@style/Widget.Zfm.Button.Outlined" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="6dp" android:text="@string/btn_add_child_lib" android:textSize="13sp" />
+                    <com.google.android.material.button.MaterialButton android:id="@+id/addChildGadgetButton" style="@style/Widget.Zfm.Button.Outlined" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="6dp" android:text="@string/btn_add_child_gadget" android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@color/zfm_surface" android:orientation="horizontal" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="6dp" android:paddingBottom="10dp">
+        <com.google.android.material.button.MaterialButton android:id="@+id/saveButton" style="@style/Widget.Zfm.Button.Outlined" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="6dp" android:text="@string/action_save" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/savePushButton" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="6dp" android:text="@string/action_save_push" />
+    </LinearLayout>
+</LinearLayout>

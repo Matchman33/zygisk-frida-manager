@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Needed on Android 11+ to enumerate every installed app so the user can
+         pick any injection target. -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+    <!-- The frida gadget creates an AF_INET socket for `listen` / `connect`
+         interaction modes. Android denies that to a process without the
+         INTERNET permission ("Unable to create socket: Operation not
+         permitted"), which is why the manager declares it itself and warns
+         about it for other targets. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="DataExtractionRules">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".AppPickerActivity"
+            android:exported="false"
+            android:label="@string/title_pick_app" />
+
+        <activity
+            android:name=".TargetEditActivity"
+            android:exported="false"
+            android:label="@string/title_edit_target" />
+
+        <activity
+            android:name=".GadgetConfigActivity"
+            android:exported="false"
+            android:label="@string/title_gadget_config" />
+
+        <activity android:name=".ScriptsActivity" android:exported="false" android:label="@string/nav_script" />
+
+        <activity
+            android:name=".ToolsActivity"
+            android:exported="false"
+            android:label="@string/title_tools" />
+
+        <activity
+            android:name=".LogActivity"
+            android:exported="false"
+            android:label="@string/title_log" />
+    </application>
+
+</manifest>

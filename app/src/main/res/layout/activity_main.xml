@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/zfm_background">
+    <include layout="@layout/view_toolbar" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="8dp" android:paddingTop="16dp" android:paddingBottom="20dp">
+        <ImageView android:id="@+id/statusIcon" android:layout_width="36dp" android:layout_height="36dp" android:src="@drawable/ic_status_24" android:padding="5dp" android:contentDescription="@null" app:tint="@color/zfm_success" />
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="12dp">
+            <TextView android:id="@+id/statusText" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/status_checking" android:textAppearance="@style/TextAppearance.Zfm.Title" />
+            <TextView android:id="@+id/statusCaption" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:textAppearance="@style/TextAppearance.Zfm.Helper" />
+            <TextView android:id="@+id/deploymentStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:textAppearance="@style/TextAppearance.Zfm.Helper" />
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/helpEnvironment" style="@style/Widget.Zfm.Help" />
+    </LinearLayout>
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginStart="20dp" android:layout_marginEnd="20dp" android:background="@color/zfm_outline_variant" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="8dp" android:layout_marginTop="16dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/target_list_title" android:textAppearance="@style/TextAppearance.Zfm.Title" />
+        <TextView android:id="@+id/targetCount" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp" android:textAppearance="@style/TextAppearance.Zfm.Helper" />
+        <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/buttonAdd" style="@style/Widget.Zfm.IconButton" android:src="@drawable/ic_add_24" android:contentDescription="@string/action_add_target" app:tint="@color/zfm_primary" />
+    </LinearLayout>
+    <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/targetList" android:layout_width="match_parent" android:layout_height="match_parent" android:clipToPadding="false" android:paddingTop="4dp" android:paddingBottom="12dp" />
+        <LinearLayout android:id="@+id/emptyText" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:orientation="vertical" android:padding="32dp" android:visibility="gone">
+            <ImageView android:layout_width="40dp" android:layout_height="40dp" android:contentDescription="@null" android:src="@drawable/ic_targets_24" app:tint="@color/zfm_muted" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/empty_targets_title" android:textAppearance="@style/TextAppearance.Zfm.Title" />
+        </LinearLayout>
+    </FrameLayout>
+    <com.google.android.material.button.MaterialButton android:id="@+id/buttonPush" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="20dp" android:layout_marginEnd="20dp" android:layout_marginBottom="12dp" android:text="@string/action_push_apply" app:icon="@drawable/ic_sync_24" app:iconGravity="textStart" android:minHeight="52dp" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/zfm_outline_variant" />
+    <include layout="@layout/view_bottom_navigation" />
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/zfm_background" android:orientation="vertical">
+    <include layout="@layout/view_toolbar" />
+    <ScrollView android:id="@+id/gadgetScroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingBottom="24dp">
+            <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/enabledSwitch" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="52dp" android:text="@string/cb_write_gadget_config" android:textAppearance="@style/TextAppearance.Zfm.Body" />
+            <com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/editorMode" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:background="@drawable/bg_spinner" android:padding="4dp" app:singleSelection="true" app:selectionRequired="true" app:checkedButton="@id/formModeButton" android:minHeight="48dp">
+                <com.google.android.material.button.MaterialButton android:id="@+id/formModeButton" style="@style/Widget.Zfm.Segment" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/editor_form" />
+                <com.google.android.material.button.MaterialButton android:id="@+id/jsonModeButton" style="@style/Widget.Zfm.Segment" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/editor_json" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+            <LinearLayout android:id="@+id/formFields" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="10dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/section_connection" android:textAppearance="@style/TextAppearance.Zfm.Section" />
+                    <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/helpInteraction" style="@style/Widget.Zfm.Help" />
+                </LinearLayout>
+                <Spinner android:id="@+id/modeSpinner" style="@style/Widget.Zfm.Spinner" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                <LinearLayout android:id="@+id/networkFields" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="12dp">
+                        <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="2" android:layout_marginEnd="10dp" android:hint="@string/gadget_address">
+                            <com.google.android.material.textfield.TextInputEditText android:id="@+id/addressInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textUri" android:maxLines="1" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="@string/gadget_port">
+                            <com.google.android.material.textfield.TextInputEditText android:id="@+id/portInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number" android:maxLines="1" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/conflictFields" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                        <TextView style="@style/Zfm.FieldLabel" android:text="@string/gadget_on_port_conflict" />
+                        <Spinner android:id="@+id/conflictSpinner" style="@style/Widget.Zfm.Spinner" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/onLoadWaitSwitch" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="52dp" android:text="@string/cb_on_load_wait" android:textAppearance="@style/TextAppearance.Zfm.Body" />
+                </LinearLayout>
+                <LinearLayout android:id="@+id/scriptFields" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:hint="@string/gadget_script_path">
+                        <com.google.android.material.textfield.TextInputEditText android:id="@+id/scriptPathInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textUri|textMultiLine" android:maxLines="3" android:textSize="12sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/reloadSwitch" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="52dp" android:text="@string/cb_script_reload" android:textAppearance="@style/TextAppearance.Zfm.Body" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/rawFields" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:hint="@string/gadget_raw_json">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/rawJsonInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="top|start" android:inputType="textMultiLine|textNoSuggestions" android:minLines="8" android:textSize="12sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <com.google.android.material.button.MaterialButton android:id="@+id/generateButton" style="@style/Widget.Zfm.Button.Text" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/btn_generate_json" />
+                    <com.google.android.material.button.MaterialButton android:id="@+id/parseButton" style="@style/Widget.Zfm.Button.Text" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/btn_parse_json" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/scriptControls" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="10dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/section_script_crypto" android:textAppearance="@style/TextAppearance.Zfm.Section" />
+                    <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/helpCrypto" style="@style/Widget.Zfm.Help" />
+                </LinearLayout>
+                <Spinner android:id="@+id/scriptModeSpinner" style="@style/Widget.Zfm.Spinner" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                <com.google.android.material.textfield.TextInputLayout android:id="@+id/keyField" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:hint="@string/script_key" app:endIconMode="password_toggle">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/encKeyInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textPassword" android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView android:id="@+id/scriptStateText" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:maxLines="2" android:ellipsize="end" android:textAppearance="@style/TextAppearance.Zfm.Helper" />
+                    <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/helpScriptDetails" style="@style/Widget.Zfm.Help" android:contentDescription="@string/action_script_details" />
+                </LinearLayout>
+                <com.google.android.material.button.MaterialButton android:id="@+id/pickScriptButton" style="@style/Widget.Zfm.Button.Tonal" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/btn_pick_script_file" app:icon="@drawable/ic_upload_24" app:iconGravity="textStart" android:minHeight="48dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/zfm_outline_variant" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@color/zfm_surface" android:orientation="horizontal" android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingTop="8dp" android:paddingBottom="8dp">
+        <com.google.android.material.button.MaterialButton android:id="@+id/saveGadgetButton" style="@style/Widget.Zfm.Button.Outlined" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="10dp" android:text="@string/btn_save_gadget" android:minHeight="48dp" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/writeNowButton" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="2" android:text="@string/btn_push_script_file" app:icon="@drawable/ic_sync_24" app:iconGravity="textStart" android:minHeight="48dp" />
+    </LinearLayout>
+    <include layout="@layout/view_bottom_navigation" />
+</LinearLayout>
