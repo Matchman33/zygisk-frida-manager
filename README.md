@@ -6,7 +6,7 @@
 
 ## 使用前准备
 
-1. 准备已 Root 且支持 Zygisk 的 Android 设备。
+1. 准备已 Root 且支持 Zygisk 的 Android 设备。需要独立 Zygisk 支持时，可从 [Zygisk Next Releases](https://github.com/LSPosed/ZygiskNext/releases) 获取模块，按上游说明安装并重启。
 2. 从 [ZygiskFrida Releases](https://github.com/lico-n/ZygiskFrida/releases) 获取适合设备的模块，在 Root 管理器中安装并重启。
 3. 从 [管理器 Releases](https://github.com/Matchman33/zygisk-frida-manager/releases) 下载 APK 并安装，授予 Root 权限，在「工具」中检查环境。
 4. 在「脚本」中建立配置，在「目标」中选择应用并绑定脚本，保存并推送后重新启动目标应用。

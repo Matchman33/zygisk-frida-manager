@@ -13,9 +13,10 @@
 
 1. Android 设备已取得 root 权限。
 2. 已安装并启用 Magisk、KernelSU、KernelSU Next 或 APatch 中的一种 root 管理器。
-3. 已刷入 ZygiskFrida 模块并重启设备。
-4. 已安装 ZygiskFrida 管理器 APK。
-5. 已在 root 管理器中向 `ZygiskFrida 管理器` 授予超级用户权限。
+3. 已具备可用的 Zygisk 环境。需要独立实现时，可从 [Zygisk Next 官方 Releases](https://github.com/LSPosed/ZygiskNext/releases) 下载模块，按上游说明安装并重启。
+4. 已刷入 ZygiskFrida 模块并重启设备。
+5. 已安装 ZygiskFrida 管理器 APK。
+6. 已在 root 管理器中向 `ZygiskFrida 管理器` 授予超级用户权限。
 
 从仓库构建出 Debug APK 后，可在仓库根目录执行：
 

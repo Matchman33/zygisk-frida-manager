@@ -6,6 +6,7 @@
 
 | 依赖 | 来源 | 安装方式 |
 |---|---|---|
+| Zygisk Next（按需） | [官方发布页](https://github.com/LSPosed/ZygiskNext/releases) | 提供独立 Zygisk 支持；按上游要求在 Root 管理器中安装并重启 |
 | ZygiskFrida 模块 | [上游发布页](https://github.com/lico-n/ZygiskFrida/releases) | 用户选择适合设备的 ZIP，在 Root 管理器中安装并重启 |
 | Frida Gadget | 模块随附文件，或 [Frida 发布页](https://github.com/frida/frida/releases) | 使用模块提供的库；自定义版本通过管理器「工具」导入 |
 | Frida 客户端 | [Frida 安装说明](https://frida.re/docs/installation/) | 安装在电脑端，仅手动连接时需要 |
