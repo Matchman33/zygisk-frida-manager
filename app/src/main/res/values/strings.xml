@@ -123,6 +123,6 @@
     <string name="help_libraries">库按列表顺序加载，路径必须是设备上的绝对路径。\n\n64 位应用使用 libgadget.so，32 位应用使用 libgadget32.so。可添加自定义库，点删除图标移除。\n\n详细的 Gadget 文件检查在「工具」页。</string>
     <string name="help_children">这是实验性功能。\n\n冻结：子进程暂停执行。\n终止：子进程创建后结束。\n注入：给子进程加载指定的库。\n\n子进程 Gadget 应使用独立文件，避免与父进程的文件和端口冲突。</string>
     <string name="help_tools">环境检测检查 Root、模块、配置和 Gadget。文件操作可导入 Gadget、脚本或子配置。\n\n高级设置中可以修改模块目录、切换 su 方式和执行 Root 命令。\n\n运行结果显示在下方「输出」中，点标题可折叠，点垃圾桶清空显示。</string>
-    <string name="help_log">选择标签筛选日志。ZygiskFrida 对应模块，Frida 对应 Gadget，ZFM 对应解密加载器。\n\n开始或停止控制采集，垃圾桶只清空当前显示，复制图标复制显示内容。\n\n离开页面自动暂停，返回时按此前的采集状态恢复。</string>
+    <string name="help_log">默认显示全部关键标签。ZygiskFrida 对应模块，Frida 对应 Gadget，ZFM 对应加载器，脚本 console 对应用户脚本控制台。\n\n清空后只显示此刻之后的新日志，切页、切换标签或重启管理器不会恢复已清空记录。它不删除其他应用的系统日志。\n\n升级前部署的脚本需要重新导入脚本或子配置，才能使用新的控制台转发。客户端另行注入的脚本和 Frida 模块包不自动转发。</string>
     <string name="about_text">ZygiskFrida 管理器\n\n独立的 Android 配置管理器，配合用户自行安装的 lico-n/ZygiskFrida 模块与 Frida Gadget 使用。管理器不包含或构建上游模块。\n\n· 选择已安装应用或 APK 文件作为目标\n· 设置启动延时（秒）\n· 管理脚本配置并按应用绑定\n· 写入设备配置，查看日志和运行状态\n\n模块下载来源：https://github.com/lico-n/ZygiskFrida/releases\n\n模块日志标签为 ZygiskFrida，Gadget 日志标签为 Frida。</string>
 </resources>

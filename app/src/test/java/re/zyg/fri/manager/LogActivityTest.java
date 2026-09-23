@@ -13,6 +13,26 @@ import static org.junit.Assert.*;
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 28)
 public class LogActivityTest {
+    @Test public void clearingPersistsAndRejectsOlderSavedView() {
+        Bundle paused = new Bundle();
+        paused.putBoolean("capture", false);
+        paused.putLong("clear", 0L);
+        paused.putString("log", "old record");
+        try (ActivityController<LogActivity> controller = Robolectric.buildActivity(LogActivity.class)
+                .create(paused).start().resume().visible()) {
+            LogActivity activity = controller.get();
+            activity.findViewById(R.id.clearButton).performClick();
+            assertEquals("", ((android.widget.TextView) activity.findViewById(R.id.logText)).getText().toString());
+            assertTrue(activity.getSharedPreferences("log_view", 0).getLong("cleared_through_us", 0) > 0);
+        }
+        try (ActivityController<LogActivity> controller = Robolectric.buildActivity(LogActivity.class)
+                .create(paused).start().resume().visible()) {
+            assertEquals("", ((android.widget.TextView) controller.get().findViewById(R.id.logText)).getText().toString());
+            assertEquals(controller.get().getString(R.string.action_start),
+                    ((Button) controller.get().findViewById(R.id.startStopButton)).getText().toString());
+        }
+    }
+
     @Test public void selectingAllWhilePausedDoesNotStartCapture() {
         Bundle state = new Bundle();
         state.putBoolean("capture", false);

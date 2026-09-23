@@ -149,6 +149,23 @@ public class ScriptCryptoTest {
         user.key = "k123";
         Files.write(gen.resolve("loader_user.js"), user.render().getBytes("UTF-8"));
 
+        String consoleScript = "'use strict'; console.log('hello', {n:7}); console.warn('warn-fixture');"
+                + "console.error(new Error('error-fixture')); console.debug('debug-fixture');"
+                + "const circular = {}; circular.self = circular; console.info(circular);"
+                + "console.log('长'.repeat(2400)); globalThis.__CONSOLE_DONE = true;";
+        check("Frida module bundle detected", ScriptCrypto.isModuleBundle("\uD83D\uDCE6\nmodule"));
+        check("plain script is not a module bundle", !ScriptCrypto.isModuleBundle(consoleScript));
+        Files.write(gen.resolve("console.js"), consoleScript.getBytes("UTF-8"));
+        Files.write(gen.resolve("console.enc"), ScriptCrypto.encrypt(consoleScript, "k123").getBytes("UTF-8"));
+        ScriptCrypto.Bootstrap console = new ScriptCrypto.Bootstrap();
+        console.name = "console.js";
+        console.plain = gen.toAbsolutePath().resolve("console.js").toString();
+        Files.write(gen.resolve("loader_console_plain.js"), console.render().getBytes("UTF-8"));
+        console.encrypted = true;
+        console.key = "k123";
+        console.source = gen.toAbsolutePath().resolve("console.enc").toString();
+        Files.write(gen.resolve("loader_console_cipher.js"), console.render().getBytes("UTF-8"));
+
         System.out.println("        loaders written to " + gen.toAbsolutePath());
         System.out.println("结果: pass=" + pass + " fail=" + fail);
         System.exit(fail == 0 ? 0 : 1);

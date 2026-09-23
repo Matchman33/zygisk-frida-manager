@@ -21,9 +21,9 @@ import java.io.InputStream;
  * the ciphertext plus a small generated loader, or decrypts locally first:
  *
  * <pre>
- *   plain              -> scripts/x.js                       (gadget loads it directly)
+ *   plain              -> scripts/x.js + console loader       (source stays unchanged)
  *   cipher, on device  -> scripts/x.so + scripts/x.loader.js  (loader decrypts and loads)
- *   cipher, local      -> scripts/x.js                        (decrypted by the manager)
+ *   cipher, local      -> scripts/x.js + console loader        (decrypted by the manager)
  * </pre>
  *
  * The loader is plain generated JavaScript, so the user's own script never has
@@ -154,7 +154,7 @@ public final class Scripts {
         }
         String base = baseName(name);
         if (Prefs.MODE_PLAIN.equals(mode)) {
-            return "明文直推 → " + name;
+            return "明文脚本 + 控制台日志 → " + name;
         }
         if (Prefs.MODE_DECRYPT_LOCAL.equals(mode)) {
             return "密文 → 管理器解密 → 明文 " + base + ".js";
@@ -315,6 +315,9 @@ public final class Scripts {
 
         String base = baseName(picked);
         if (Prefs.MODE_DECRYPT_DEVICE.equals(p.scriptMode())) {
+            if (ScriptCrypto.isModuleBundle(plain)) {
+                return Outcome.fail("Frida 模块包需要原生加载，不能用设备内解密加载器。请使用本地解密后推送明文。");
+            }
             String encDevice = p.scriptsDir() + "/" + picked;
             Shell.Result pushed = Shell.pushFile(ctx, local, encDevice, "0644");
             if (!pushed.ok()) {
@@ -347,7 +350,11 @@ public final class Scripts {
         if (!pushed.ok()) {
             return Outcome.fail("明文脚本推送失败:\n" + pushed.dump());
         }
-        return Outcome.ok(plainDevice, "管理器已解密，设备上是明文（" + plainDevice + "）");
+        if (ScriptCrypto.isModuleBundle(plain)) {
+            return Outcome.ok(plainDevice, "Frida 模块包使用原生加载；模块包的 console 不会自动转发到管理器。");
+        }
+        return withConsoleLoader(ctx, p, plainDevice, base + ".js",
+                "管理器已解密，设备上是明文（" + plainDevice + "）");
     }
 
     /**
@@ -364,6 +371,9 @@ public final class Scripts {
             return Outcome.fail("读取所选文件失败: " + e);
         }
         String key = p.scriptKey();
+        if (ScriptCrypto.isModuleBundle(text)) {
+            return Outcome.fail("Frida 模块包需要原生加载，请选择明文直接推送，或先构建成普通单文件脚本。");
+        }
         if (!ScriptCrypto.keyIsAscii(key)) {
             return Outcome.fail("密钥必须是 ASCII 字符（XOR 用的是 charCodeAt）");
         }
@@ -415,14 +425,27 @@ public final class Scripts {
 
         String note = "";
         try {
-            if (ScriptCrypto.looksEncrypted(readLocal(local))) {
+            String text = readLocal(local);
+            if (ScriptCrypto.isModuleBundle(text)) {
+                return Outcome.ok(scriptDevice, "Frida 模块包使用原生加载；模块包的 console 不会自动转发到管理器。");
+            }
+            if (ScriptCrypto.looksEncrypted(text)) {
                 note = "提示：这个文件看起来是纯 Base64（可能是加密脚本）。"
                         + "如果脚本没生效，请在「Gadget / 脚本配置」里打开「脚本已加密」。";
             }
         } catch (IOException ignored) {
         }
 
-        return Outcome.ok(scriptDevice, note);
+        return withConsoleLoader(ctx, p, scriptDevice, picked, note);
+    }
+
+    private static Outcome withConsoleLoader(Context ctx, Prefs p, String source, String name, String note) {
+        String loaderPath = p.scriptsDir() + "/" + baseName(name) + ".console.loader.js";
+        ScriptCrypto.Bootstrap bootstrap = newBootstrap(p, name);
+        bootstrap.plain = source;
+        Shell.Result result = writeLoader(ctx, loaderPath, bootstrap.render());
+        if (!result.ok()) return Outcome.fail("日志加载器写入失败:\n" + result.dump());
+        return Outcome.ok(loaderPath, note + "\n脚本控制台输出可在「日志 → 脚本 console」查看。");
     }
 
     private static Shell.Result writeLoader(Context ctx, String devicePath, String js) {
