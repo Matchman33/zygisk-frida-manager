@@ -1,7 +1,7 @@
 # ZygiskFrida 管理器使用手册
 
-文档版本：2026-09-21
-适用应用：`re.zyg.fri.manager` 1.0.0
+文档版本：2026-09-23
+适用应用：`re.zyg.fri.manager` 1.0.1
 
 本手册面向直接使用管理器的用户，按实际操作流程说明如何选择目标、配置注入、推送脚本、查看日志和排查问题。构建入口见 [管理器 README](../README.md)，实现原理和历史真机记录见 [开发说明](implementation_zh.md)。模块和 Gadget 的来源见 [外部依赖说明](upstream_zh.md)。
 
