@@ -39,7 +39,7 @@
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Linux / macOS 使用 `./gradlew`。Release 构建命令为 `:app:assembleRelease`；当前使用开发用 debug 签名，正式分发前需要配置自己的签名。
+Linux / macOS 使用 `./gradlew`。Release 构建命令为 `:app:assembleRelease`，固定读取 `.signing/signing.properties` 中指定的发布密钥；配置或密钥缺失时会停止构建，不再退回 debug 签名。密钥位置、备份与首次签名切换说明见 [发布签名说明](docs/signing_zh.md)。Debug 构建仍使用开发用 debug 签名。
 
 脚本加解密与子配置的离线自测需要 JDK 和 Node.js，不需要 Android SDK：
 

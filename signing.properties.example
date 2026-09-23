@@ -1,0 +1,7 @@
+# Example only. The actual file is .signing/signing.properties.
+# storeFile is relative to the repository root.
+storeFile=.signing/release.p12
+storeType=PKCS12
+keyAlias=zygisk-frida-manager
+storePassword=REPLACE_WITH_LOCAL_PASSWORD
+keyPassword=REPLACE_WITH_LOCAL_PASSWORD

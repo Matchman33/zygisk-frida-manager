@@ -2,6 +2,47 @@ plugins {
     id 'com.android.application'
 }
 
+def releaseSigningFile = rootProject.file(providers.gradleProperty('releaseSigningProperties')
+        .getOrElse('.signing/signing.properties'))
+def releaseSigning = new Properties()
+if (releaseSigningFile.isFile()) {
+    releaseSigningFile.withInputStream { releaseSigning.load(it) }
+}
+
+def verifyReleaseSigning = tasks.register('verifyReleaseSigning') {
+    doLast {
+        if (!releaseSigningFile.isFile()) {
+            throw new GradleException('缺少发布签名配置。请恢复 .signing 备份，详见 docs/signing_zh.md。')
+        }
+        ['storeFile', 'storePassword', 'keyAlias', 'keyPassword'].each { key ->
+            if (!releaseSigning.getProperty(key)?.trim()) {
+                throw new GradleException("发布签名配置缺少字段：${key}。")
+            }
+        }
+        if (!rootProject.file(releaseSigning.getProperty('storeFile')).isFile()) {
+            throw new GradleException('找不到发布密钥文件。请恢复原密钥，不要重新生成替代密钥。')
+        }
+        def certificate
+        try {
+            def keyStore = java.security.KeyStore.getInstance(releaseSigning.getProperty('storeType', 'PKCS12'))
+            rootProject.file(releaseSigning.getProperty('storeFile')).withInputStream {
+                keyStore.load(it, releaseSigning.getProperty('storePassword').toCharArray())
+            }
+            certificate = keyStore.getCertificate(releaseSigning.getProperty('keyAlias'))
+            if (certificate == null || !keyStore.isKeyEntry(releaseSigning.getProperty('keyAlias'))) {
+                throw new IllegalStateException('Missing signing entry')
+            }
+        } catch (Exception ignored) {
+            throw new GradleException('无法读取发布证书，请检查密钥库、别名和密码。')
+        }
+        def fingerprint = java.security.MessageDigest.getInstance('SHA-256')
+                .digest(certificate.encoded).encodeHex().toString()
+        if (fingerprint != 'bad460b2b8d429c5091870c6f2dcc2f1f3d4cf1439acc70525c6ee0454b3469d') {
+            throw new GradleException('发布证书与项目固定签名不一致，已停止构建。请恢复原发布密钥。')
+        }
+    }
+}
+
 android {
     namespace 're.zyg.fri.manager'
     compileSdk 35
@@ -15,15 +56,25 @@ android {
         versionName '1.0.1'
     }
 
+    signingConfigs {
+        release {
+            if (releaseSigningFile.isFile()) {
+                storeFile rootProject.file(releaseSigning.getProperty('storeFile', '.signing/release.p12'))
+                storePassword releaseSigning.getProperty('storePassword')
+                keyAlias releaseSigning.getProperty('keyAlias')
+                keyPassword releaseSigning.getProperty('keyPassword')
+                storeType releaseSigning.getProperty('storeType', 'PKCS12')
+            }
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
         }
         release {
             minifyEnabled false
-            // Signed with the auto-generated debug key so that the release APK
-            // is directly installable. Re-sign it yourself for distribution.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 
@@ -40,6 +91,10 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
+}
+
+tasks.matching { it.name == 'preReleaseBuild' || it.name == 'validateSigningRelease' }.configureEach {
+    dependsOn verifyReleaseSigning
 }
 
 dependencies {

@@ -9,3 +9,10 @@ captures/
 .cxx/
 /selftest/out/
 /selftest/gen*/
+
+# Signing material is ignored by default; explicitly tracked files remain versioned.
+/.signing/
+/signing.properties
+*.keystore
+*.jks
+*.p12
