@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
 }
 
+apply from: rootProject.file('gradle/elf-dependencies.gradle')
+
 def releaseSigningFile = rootProject.file(providers.gradleProperty('releaseSigningProperties')
         .getOrElse('.signing/signing.properties'))
 def releaseSigning = new Properties()
@@ -47,13 +49,23 @@ android {
     namespace 're.zyg.fri.manager'
     compileSdk 35
     buildToolsVersion '35.0.1'
+    ndkVersion '28.2.13676358'
 
     defaultConfig {
         applicationId 're.zyg.fri.manager'
         minSdk 23
         targetSdk 34
-        versionCode 2
-        versionName '1.0.1'
+        versionCode 3
+        versionName '1.1.0'
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64'
+        }
+        externalNativeBuild {
+            cmake {
+                arguments "-DZFM_LIEF_SOURCE_DIR=${zfmLiefSourceDir}", '-DANDROID_STL=c++_static'
+                targets 'zfm_elf'
+            }
+        }
     }
 
     signingConfigs {
@@ -71,16 +83,33 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
+            if (providers.gradleProperty('isolatedTestBuild').isPresent()) {
+                applicationIdSuffix '.test'
+                versionNameSuffix '-test'
+                resValue 'string', 'app_name', 'ZygiskFrida 测试'
+            }
         }
         release {
             minifyEnabled false
             signingConfig signingConfigs.release
+            if (providers.gradleProperty('isolatedTestBuild').isPresent()) {
+                applicationIdSuffix '.test'
+                versionNameSuffix '-test'
+                resValue 'string', 'app_name', 'ZygiskFrida 测试'
+            }
         }
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
+    }
+
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.31.6'
+        }
     }
 
     testOptions {
@@ -101,6 +130,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.recyclerview:recyclerview:1.4.0'
     implementation 'com.google.android.material:material:1.14.0'
+    implementation 'org.tukaani:xz:1.10'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.json:json:20240303'
     testImplementation 'org.robolectric:robolectric:4.14.1'

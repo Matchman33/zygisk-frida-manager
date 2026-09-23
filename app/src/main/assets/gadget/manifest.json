@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "version": "17.18.0",
+  "releaseUrl": "https://github.com/frida/frida/releases/tag/17.18.0",
+  "libraries": {
+    "armeabi-v7a": {
+      "asset": "frida-gadget-17.18.0-android-arm.so.xz",
+      "compressedSha256": "3944f8ff07e458bcbd9482529510044ce2c8efe349b54ff11555e4fcdf0d679e",
+      "sha256": "596642689a2221f8fda5c15f887add936f20261a39ee0d6add3b1bc93af5c7d3",
+      "size": 16007736,
+      "elfClass": 1,
+      "machine": 40
+    },
+    "arm64-v8a": {
+      "asset": "frida-gadget-17.18.0-android-arm64.so.xz",
+      "compressedSha256": "c176650121a70b4345ce3d47c422df295fc8d931fb14f75887dddc0230c79e81",
+      "sha256": "c87c53efc10a9b6f2f4259b7b962d403cac729d6ee6f6a83f679489f92671a3a",
+      "size": 25220848,
+      "elfClass": 2,
+      "machine": 183
+    },
+    "x86": {
+      "asset": "frida-gadget-17.18.0-android-x86.so.xz",
+      "compressedSha256": "6b3060de97543c5407340e92b7b90d006252e367460957ff148987b30bb4c575",
+      "sha256": "9f590185d062a171aa46648abdfcf58b7cfa20c7df49390103c1c9b234cbfd3a",
+      "size": 27959836,
+      "elfClass": 1,
+      "machine": 3
+    },
+    "x86_64": {
+      "asset": "frida-gadget-17.18.0-android-x86_64.so.xz",
+      "compressedSha256": "e90b531b6d52ad390095a2579e1d9aed80070346f8ff0b533448682256755cf2",
+      "sha256": "3b828b8fe5d97be4aeda0ae2e029fb2309343aea3db1a112459330e6b2e1a123",
+      "size": 26594520,
+      "elfClass": 2,
+      "machine": 62
+    }
+  }
+}

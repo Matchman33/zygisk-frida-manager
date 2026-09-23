@@ -140,6 +140,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             else if (this instanceof LogActivity) body = R.string.help_log;
             else if (this instanceof TargetEditActivity) body = R.string.help_target;
             else if (this instanceof AppPickerActivity) body = R.string.help_picker;
+            else if (this instanceof PatchSoActivity) body = R.string.help_patch_so;
             Ui.help(this, getString(R.string.action_help), getString(body));
             return true;
         }

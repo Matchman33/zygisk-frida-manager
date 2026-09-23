@@ -1,0 +1,15 @@
+Frida Gadget 17.18.0
+Unmodified official Android release assets, embedded in compressed form.
+Source and release: https://github.com/frida/frida/releases/tag/17.18.0
+Core source and license: https://github.com/frida/frida-core/tree/17.18.0
+License: wxWindows Library Licence, Version 3.1 (see Frida-COPYING.txt).
+
+LIEF 1.0.0
+Copyright 2017-2026 R. Thomas and Quarkslab; additional notices are in the source distribution.
+Source: https://github.com/lief-project/LIEF/tree/1.0.0
+License: Apache License 2.0 (see LIEF-Apache-2.0.txt).
+Built from the pinned official source archive with the ELF module enabled.
+
+XZ for Java 1.10
+Source: https://github.com/tukaani-project/xz-java
+Used to decompress the bundled Gadget assets; see XZ-COPYING.txt.

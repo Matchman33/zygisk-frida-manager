@@ -1,0 +1,61 @@
+import java.security.MessageDigest
+import groovy.json.JsonSlurper
+
+def liefVersion = '1.0.0'
+def liefHash = '2cf412695ff739d82e129db441e5c2025f3bb4873a3d3a1d3dd4cf300b682abd'
+def dependencyDir = rootProject.layout.buildDirectory.dir('patch-deps').get().asFile
+def sourceDir = new File(dependencyDir, "LIEF-${liefVersion}")
+def sha256 = { File file ->
+    def digest = MessageDigest.getInstance('SHA-256')
+    file.withInputStream { stream ->
+        byte[] buffer = new byte[65536]
+        int count
+        while ((count = stream.read(buffer)) != -1) digest.update(buffer, 0, count)
+    }
+    digest.digest().encodeHex().toString()
+}
+
+def prepareLief = tasks.register('prepareLief') {
+    description = 'Fetch and verify the pinned LIEF source used by the Android ELF engine.'
+    outputs.file(new File(sourceDir, 'CMakeLists.txt'))
+    doLast {
+        dependencyDir.mkdirs()
+        File archive = new File(dependencyDir, "lief-${liefVersion}.tar.gz")
+        if (!archive.isFile() || sha256(archive) != liefHash) {
+            File temporary = new File(dependencyDir, 'lief-download.part')
+            def connection = new URI("https://codeload.github.com/lief-project/LIEF/tar.gz/refs/tags/${liefVersion}").toURL().openConnection()
+            connection.connectTimeout = 30000
+            connection.readTimeout = 90000
+            connection.setRequestProperty('User-Agent', 'ZygiskFrida-Manager-Build')
+            connection.inputStream.withCloseable { input -> temporary.withOutputStream { it << input } }
+            if (sha256(temporary) != liefHash) throw new GradleException('LIEF source checksum mismatch')
+            java.nio.file.Files.move(temporary.toPath(), archive.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+        }
+        rootProject.copy {
+            from rootProject.tarTree(rootProject.resources.gzip(archive))
+            into dependencyDir
+            exclude '*/examples/**', '*/tests/**', '*/doc/**', '*/docs/**', '*/.github/**'
+        }
+    }
+}
+
+def verifyGadgets = tasks.register('verifyBundledGadgets') {
+    def assets = file('src/main/assets/gadget')
+    inputs.dir(assets)
+    doLast {
+        def manifest = new JsonSlurper().parse(new File(assets, 'manifest.json'))
+        ['armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'].each { abi ->
+            def entry = manifest.libraries[abi]
+            if (entry == null) throw new GradleException("Missing bundled Gadget: ${abi}")
+            def archive = new File(assets, entry.asset)
+            if (!archive.isFile() || sha256(archive) != entry.compressedSha256)
+                throw new GradleException("Bundled Gadget checksum mismatch: ${abi}")
+        }
+    }
+}
+
+tasks.configureEach {
+    if (name.startsWith('configureCMake')) dependsOn prepareLief
+    if (name == 'preBuild') dependsOn verifyGadgets
+}
+ext.zfmLiefSourceDir = sourceDir.absolutePath.replace('\\', '/')

@@ -65,6 +65,7 @@
             android:name=".LogActivity"
             android:exported="false"
             android:label="@string/title_log" />
+        <activity android:name=".PatchSoActivity" android:exported="false" android:label="@string/title_patch_so" />
     </application>
 
 </manifest>

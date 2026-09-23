@@ -62,6 +62,7 @@ public class ToolsActivity extends BaseActivity {
         prefs = Prefs.get(this);
         store = ConfigStore.get(this);
         setContentView(R.layout.activity_tools);
+        findViewById(R.id.patchSoButton).setOnClickListener(v -> startActivity(new Intent(this, PatchSoActivity.class)));
 
         moduleDirInput = findViewById(R.id.moduleDirInput);
         suModeSpinner = findViewById(R.id.suModeSpinner);

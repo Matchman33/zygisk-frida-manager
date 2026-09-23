@@ -1,6 +1,6 @@
 # 外部依赖与兼容性
 
-管理器与设备侧注入模块分别维护。构建管理器只需要 JDK 和 Android SDK，使用注入功能才需要设备上已安装 ZygiskFrida 和对应架构的 Gadget。
+管理器与设备侧注入模块分别维护。模块注入功能需要设备上已安装 ZygiskFrida 与对应架构的 Gadget；离线 Patch SO 功能不需要 Root 或 ZygiskFrida，使用 APK 内置的 Gadget。构建原生 ELF 引擎需要 Android NDK 和 CMake。
 
 ## 获取与安装
 
@@ -8,10 +8,11 @@
 |---|---|---|
 | Zygisk Next（按需） | [官方发布页](https://github.com/LSPosed/ZygiskNext/releases) | 提供独立 Zygisk 支持；按上游要求在 Root 管理器中安装并重启 |
 | ZygiskFrida 模块 | [上游发布页](https://github.com/lico-n/ZygiskFrida/releases) | 用户选择适合设备的 ZIP，在 Root 管理器中安装并重启 |
-| Frida Gadget | 模块随附文件，或 [Frida 发布页](https://github.com/frida/frida/releases) | 使用模块提供的库；自定义版本通过管理器「工具」导入 |
+| Frida Gadget | 模块随附文件，或 [Frida 发布页](https://github.com/frida/frida/releases) | 模块注入使用模块提供的库；Patch SO 内置官方 17.18.0，按目标 SO 架构匹配 |
+| LIEF | [1.0.0 源码](https://github.com/lief-project/LIEF/tree/1.0.0) | 构建时下载并校验，编译为管理器内的 ELF 修改引擎 |
 | Frida 客户端 | [Frida 安装说明](https://frida.re/docs/installation/) | 安装在电脑端，仅手动连接时需要 |
 
-本仓库不下载、打包或自动安装这些产物，也不把它们放进 APK assets。用户升级模块或 Gadget 后应重新验证注入和连接。
+本仓库不打包或自动安装 ZygiskFrida 模块。Patch SO 所需的四种 Gadget 压缩资源已存放在 APK assets；它们只在导出补丁时解压，不会在管理器进程中加载。用户升级模块或 Gadget 后应重新验证注入和连接。
 
 ## 兼容基线
 
@@ -52,4 +53,4 @@ frida -H 127.0.0.1:27042 -n Gadget -l script.js
 
 ## 仓库边界
 
-当前目录只保存管理器源码、资源、测试及文档。原生模块源码、打包模板、NDK 配置和上游文档副本已移除。Git 历史从独立管理器初始提交开始；已有 MIT 声明和上游来源说明保留，字体许可证继续随 APK 分发。
+当前目录保存管理器源码、资源、测试及文档，不包含 ZygiskFrida 模块源码与打包工程。Patch SO 引入了 LIEF 原生构建配置和官方 Gadget 压缩资源；它们的版本、摘要及许可证单独记录。Git 历史仍从独立管理器初始提交开始。

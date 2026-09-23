@@ -125,4 +125,16 @@
     <string name="help_tools">环境检测检查 Root、模块、配置和 Gadget。文件操作可导入 Gadget、脚本或子配置。\n\n高级设置中可以修改模块目录、切换 su 方式和执行 Root 命令。\n\n运行结果显示在下方「输出」中，点标题可折叠，点垃圾桶清空显示。</string>
     <string name="help_log">默认显示全部关键标签。ZygiskFrida 对应模块，Frida 对应 Gadget，ZFM 对应加载器，脚本 console 对应用户脚本控制台。\n\n清空后只显示此刻之后的新日志，切页、切换标签或重启管理器不会恢复已清空记录。它不删除其他应用的系统日志。\n\n升级前部署的脚本需要重新导入脚本或子配置，才能使用新的控制台转发。客户端另行注入的脚本和 Frida 模块包不自动转发。</string>
     <string name="about_text">ZygiskFrida 管理器\n\n独立的 Android 配置管理器，配合用户自行安装的 lico-n/ZygiskFrida 模块与 Frida Gadget 使用。管理器不包含或构建上游模块。\n\n· 选择已安装应用或 APK 文件作为目标\n· 设置启动延时（秒）\n· 管理脚本配置并按应用绑定\n· 写入设备配置，查看日志和运行状态\n\n模块下载来源：https://github.com/lico-n/ZygiskFrida/releases\n\n模块日志标签为 ZygiskFrida，Gadget 日志标签为 Frida。</string>
+    <string name="title_patch_so">Patch SO</string>
+    <string name="patch_pick_so">选择目标 SO</string>
+    <string name="patch_configuration">Gadget 配置</string>
+    <string name="patch_preset">预设</string>
+    <string name="patch_custom">自定义 JSON</string>
+    <string name="patch_attach_script">附带脚本（可选）</string>
+    <string name="patch_pick_script">选择脚本</string>
+    <string name="patch_remove_script">移除附带脚本</string>
+    <string name="patch_build">生成补丁</string>
+    <string name="patch_export">导出 ZIP</string>
+    <string name="help_patch_so">选择从目标 APK 提取的 lib*.so。工具会自动识别架构，添加 libgadget.so 的 DT_NEEDED 依赖，并导出补丁 SO、匹配的 Gadget 和 libgadget.config.so。原输入文件不变，本操作不需要 Root 或 Zygisk。\n\n目标应用必须实际加载这份 SO。将导出文件放回 APK 对应架构的 lib 目录，使用 extractNativeLibs=true 让配置文件解压到 Gadget 旁边，再重新对齐和签名。本工具不自动回包或安装 APK。\n\n修改 APK 后原签名失效，且应用自身的完整性校验仍可能拒绝运行。只对你有权修改的应用使用。\n\n可处理 arm、arm64、x86 和 x86_64 的小端 ELF 共享库，输入最大 256 MiB。需要覆盖多个架构时应分别处理。</string>
+    <string name="help_patch_config">监听并继续：默认 127.0.0.1:27042，不暂停宿主。\n监听并等待：加载时等待 Frida 客户端连接，宿主可能停在启动阶段。\n自动脚本：选择随包导出的明文脚本，配置引用 libgadget.script.so。\n连接远端：主动连接指定的 Frida Portal。\n\n已有预设只复制配置 JSON，不自动读取或复制其中引用的设备脚本。配置可以切到自定义 JSON 修改，且不会回写原预设。\n\n附带脚本时，只支持 script 模式，path 必须为 libgadget.script.so。使用其他路径或 script-directory 时请自行部署对应文件。listen/connect 需要目标 APK 的 INTERNET 权限。</string>
 </resources>

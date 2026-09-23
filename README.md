@@ -1,8 +1,10 @@
 # ZygiskFrida 管理器
 
-独立的 Android 管理器，用于配置设备上已安装的 ZygiskFrida 模块，管理应用目标、脚本、Gadget 参数和日志。
+独立的 Android 管理器，用于管理 ZygiskFrida 的应用目标、脚本、Gadget 参数和日志，也提供不依赖 Root 的离线 SO 补丁工具。
 
-本仓库只构建管理器 APK。ZygiskFrida 模块和 Frida Gadget 作为外部运行时依赖，由用户从上游获取并安装；仓库不包含、编译或分发它们的源码及二进制产物。
+本仓库只构建管理器 APK，ZygiskFrida 模块仍需独立安装。Patch SO 工具内置官方 Frida Gadget 17.18.0 的四种 Android 架构资源，使用 LIEF 修改 ELF 依赖；资源来源、摘要和许可证随工程保存。
+
+仅使用「工具 → Patch SO」无需 Root 或 ZygiskFrida 模块。它导出 SO、Gadget 和配置组成的 ZIP，不自动回包或签名目标 APK。操作与打包要求见 [Patch SO 使用说明](docs/patch_so_zh.md)。
 
 ## 使用前准备
 
@@ -21,6 +23,7 @@
 - 暂存、提交及回滚设备配置，区分本机配置、最近推送状态和进程运行状态。
 - 启动、停止和重启目标应用，按标签查看日志并检查设备环境。
 - 日志清空后不回放历史，支持分页续接，以及普通脚本 console 到 logcat 的转发。
+- Patch SO：自动识别架构、添加 Gadget 的 DT_NEEDED，支持内置和已有预设、自定义 JSON、附带脚本及 ZIP 导出。
 
 详细操作见 [中文使用手册](docs/usage_zh.md) 和 [应用与脚本配置](docs/per_app_scripts_zh.md)。
 
@@ -28,7 +31,7 @@
 
 ## 构建与测试
 
-需要 JDK 17 和 Android SDK（platform 35、build-tools 35.0.1）。使用 Gradle Wrapper 8.13 和 AGP 8.11.1，无需 NDK、ZygiskFrida 源码或连接手机。
+需要 JDK 17、Android SDK（platform 35、build-tools 35.0.1）、NDK 28.2.13676358 和 CMake 3.31.6。使用 Gradle Wrapper 8.13 和 AGP 8.11.1，无需 ZygiskFrida 模块源码或连接手机。首次原生构建会下载并校验固定版本的 LIEF 源码，首次编译四种架构耗时较长。
 
 直接在 Android Studio 中打开仓库根目录。通过 `ANDROID_HOME` 设置 SDK 路径，或在不提交的 `local.properties` 中填写 `sdk.dir`。
 
@@ -69,7 +72,8 @@ LICENSE              MIT 许可证
 ## 上游与许可
 
 - [ZygiskFrida](https://github.com/lico-n/ZygiskFrida)：设备侧注入模块，独立安装。
-- [Frida](https://frida.re)：Gadget 与电脑端客户端，独立获取。
+- [Frida](https://frida.re)：Patch SO 内置 Gadget 来自官方发布；电脑端客户端单独安装。
+- [LIEF](https://github.com/lief-project/LIEF)：ELF 解析与重写引擎，按 Apache 2.0 许可构建。
 - [Noto Sans SC 字体许可](docs/licenses/NotoSansSC-OFL.txt)：随管理器分发，APK 中也包含许可声明。
 
 仓库保留已有 [MIT 许可和版权声明](LICENSE) 及上游来源说明。Git 历史从独立管理器项目的初始提交开始，不包含此前的上游源码提交。

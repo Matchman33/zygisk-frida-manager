@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/zfm_background">
+    <include layout="@layout/view_toolbar" />
+    <com.google.android.material.progressindicator.LinearProgressIndicator android:id="@+id/patchProgress"
+        android:layout_width="match_parent" android:layout_height="4dp" android:indeterminate="true" android:visibility="gone" />
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+        <LinearLayout android:id="@+id/patchForm" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="20dp">
+            <TextView android:id="@+id/patchGadgetVersion" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Zfm.Helper" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="12dp">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:id="@+id/patchInputName" android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Zfm.Title" android:maxLines="2" android:ellipsize="middle" />
+                    <TextView android:id="@+id/patchInputInfo" android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp" android:textAppearance="@style/TextAppearance.Zfm.Helper" />
+                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/patchInputHelp" style="@style/Widget.Zfm.Help" />
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButton android:id="@+id/patchPickSo" style="@style/Widget.Zfm.Button.Tonal"
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+                android:text="@string/patch_pick_so" app:icon="@drawable/ic_folder_24" app:iconGravity="textStart" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginTop="12dp" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="@string/patch_configuration" android:textAppearance="@style/TextAppearance.Zfm.Section" />
+                <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/patchConfigHelp" style="@style/Widget.Zfm.Help" />
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/patchConfigMode"
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="4dp" android:background="@drawable/bg_spinner"
+                app:singleSelection="true" app:selectionRequired="true" app:checkedButton="@id/patchPresetMode">
+                <com.google.android.material.button.MaterialButton android:id="@+id/patchPresetMode" style="@style/Widget.Zfm.Segment"
+                    android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/patch_preset" />
+                <com.google.android.material.button.MaterialButton android:id="@+id/patchCustomMode" style="@style/Widget.Zfm.Segment"
+                    android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/patch_custom" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+            <LinearLayout android:id="@+id/patchPresetFields" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="12dp">
+                <Spinner android:id="@+id/patchPreset" style="@style/Widget.Zfm.Spinner" android:layout_width="match_parent" android:layout_height="wrap_content" />
+                <LinearLayout android:id="@+id/patchNetworkFields" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:layout_marginTop="12dp" android:baselineAligned="false">
+                    <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="2" android:layout_marginEnd="10dp" android:hint="@string/gadget_address">
+                        <com.google.android.material.textfield.TextInputEditText android:id="@+id/patchAddress" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:inputType="textUri" android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="@string/gadget_port">
+                        <com.google.android.material.textfield.TextInputEditText android:id="@+id/patchPort" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:inputType="number" android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/patchJsonField" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="12dp" android:hint="@string/gadget_raw_json" android:visibility="gone">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/patchJson" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:minLines="8" android:textSize="12sp" android:gravity="top|start" android:inputType="textMultiLine|textNoSuggestions" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView style="@style/Zfm.Section" android:text="@string/patch_attach_script" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:id="@+id/patchScriptName" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:textAppearance="@style/TextAppearance.Zfm.Helper" android:maxLines="2" android:ellipsize="end" />
+                <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/patchRemoveScript" style="@style/Widget.Zfm.IconButton"
+                    android:src="@drawable/ic_delete_24" android:contentDescription="@string/patch_remove_script" android:visibility="gone" />
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButton android:id="@+id/patchPickScript" style="@style/Widget.Zfm.Button.Tonal"
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+                android:text="@string/patch_pick_script" app:icon="@drawable/ic_code_24" app:iconGravity="textStart" />
+            <TextView android:id="@+id/patchProgressText" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" android:textAppearance="@style/TextAppearance.Zfm.Helper" android:accessibilityLiveRegion="polite" />
+            <TextView android:id="@+id/patchError" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+                android:textAppearance="@style/TextAppearance.Zfm.Helper" android:textColor="@color/zfm_error" android:visibility="gone" android:accessibilityLiveRegion="polite" />
+            <TextView android:id="@+id/patchResult" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+                android:textAppearance="@style/TextAppearance.Zfm.Helper" android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/zfm_outline_variant" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"
+        android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingTop="8dp" android:paddingBottom="8dp" android:background="@color/zfm_surface">
+        <com.google.android.material.button.MaterialButton android:id="@+id/patchBuild" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:layout_marginEnd="6dp" android:text="@string/patch_build" android:enabled="false" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/patchExport" style="@style/Widget.Zfm.Button.Outlined"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="6dp"
+            android:text="@string/patch_export" android:enabled="false" app:icon="@drawable/ic_download_24" app:iconGravity="textStart" />
+    </LinearLayout>
+</LinearLayout>

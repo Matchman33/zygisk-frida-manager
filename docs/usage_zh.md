@@ -1,13 +1,15 @@
 # ZygiskFrida 管理器使用手册
 
 文档版本：2026-09-23
-适用应用：`re.zyg.fri.manager` 1.0.1
+适用应用：`re.zyg.fri.manager` 1.1.0
 
 本手册面向直接使用管理器的用户，按实际操作流程说明如何选择目标、配置注入、推送脚本、查看日志和排查问题。构建入口见 [管理器 README](../README.md)，实现原理和历史真机记录见 [开发说明](implementation_zh.md)。模块和 Gadget 的来源见 [外部依赖说明](upstream_zh.md)。
 
 > 仅在你拥有或已获得明确授权的设备和应用上使用本工具。
 
 ## 1. 使用前准备
+
+本节条件适用于 ZygiskFrida 模块注入。仅使用「工具 → Patch SO」不需要 Root 或模块，可直接按 [Patch SO 使用说明](patch_so_zh.md) 生成 SO、Gadget 和配置补丁包。
 
 开始前确认以下条件：
 
@@ -381,6 +383,7 @@ gadget 会主动连接指定地址和端口。只有在已经准备好远端 Fri
 
 | 功能 | 用途 |
 |---|---|
+| Patch SO | 离线为指定 SO 添加 Gadget 依赖，使用预设或自定义配置导出 ZIP |
 | 模块目录 | 修改模块文件所在目录 |
 | su 调用方式 | 在自动、`su -c`、`su 0 sh -c` 之间切换 |
 | 测试 Root | 执行 root 身份检查 |
